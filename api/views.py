@@ -1,3 +1,13 @@
 from django.shortcuts import render
+from .mixins import JSONResponseMixin
+from rest_framework.views import APIView
 
-# Create your views here.
+class PingView(APIView):
+
+	def get(self, request):
+		"""
+		Just responds with Pong
+		"""
+		data = {'ping': 'pong'}
+
+		return JSONResponseMixin(data)
