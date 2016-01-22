@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'cors'
+    'cors',
+    'api',
 ]
 
 MIDDLEWARE_CLASSES = [
