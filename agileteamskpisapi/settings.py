@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'agileteamskpisapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'drfagilekpis',
+        'USER': 'kpisadmin',
+        'PASSWORD': 'ritvik@123',
+        'HOST': '127.0.0.1',
+        'PORT': '',
     }
 }
 
@@ -119,10 +123,31 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+# comment the next line to use sqlite
+DATABASES['default'] = dj_database_url.config()
 
+# Enable Persistent Connections
+DATABASES['default']['CONN_MAX_AGE'] = 500
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
 STATIC_URL = '/static/'
+#STATIC_ROOT = '/var/tmp/dashboard/collected_static' # staticfiles
+STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+#     #os.path.join(BASE_DIR, '../dashboard/static'),
+# )
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, "dashboard", "static"),) # In Django 1.9 it looks like I don't need to explicitly list subapps static media
+STATICFILES_DIRS = () # no global static media , just the per-app
 
 # allowing all hosts to perform queries
 CORS_ORIGIN_ALLOW_ALL = True
