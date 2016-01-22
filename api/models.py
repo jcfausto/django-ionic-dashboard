@@ -18,5 +18,8 @@ class Team(models.Model):
 	name = models.CharField(max_length=100, blank=False)
 	owner = models.ForeignKey('Organization', related_name='teams')
 
+	def __str__(self):
+		return self.name
+
 	class Meta:
 		ordering = ('created',)
