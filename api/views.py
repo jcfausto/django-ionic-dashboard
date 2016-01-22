@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from .mixins import JSONResponseMixin
 from rest_framework.views import APIView
 from api.models import Organization
@@ -23,4 +24,18 @@ class OrganizationView(APIView):
 		"""
 		organizations = Organization.objects.all()
 		serialized_data = OrganizationSerializer(organizations, many=True)
+		return JSONResponseMixin(serialized_data.data)
+
+class OrganizationDetailView(APIView):
+
+	def get(self, request, pk):
+		"""
+		Return details for a given Organization
+		"""
+		try:
+			organization = Organization.objects.get(pk=pk)
+		except Organization.DoesNotExist:
+			return HttpResponse(status=404)
+
+		serialized_data = OrganizationSerializer(organization)
 		return JSONResponseMixin(serialized_data.data)
