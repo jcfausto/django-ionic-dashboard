@@ -23,3 +23,39 @@ class Team(models.Model):
 
 	class Meta:
 		ordering = ('created',)
+
+class Kpi(models.Model):
+	created = models.DateTimeField(auto_now_add=True)
+	owner = models.ForeignKey('Team', related_name='kpis')
+	name = models.CharField(max_length=20, blank=False)
+
+	def __str__(self):
+		return self.name
+
+	class Meta:
+		ordering = ('created',)
+
+
+class KpiValue(models.Model):
+	created = models.DateTimeField(auto_now_add=True)
+	owner = models.ForeignKey('Kpi', related_name='values')
+	value = models.FloatField(default=0.0, blank=False)
+
+	def __str__(self):
+		return self.value
+
+	class Meta:
+		ordering = ('created',)
+
+
+class KpiLimit(models.Model):
+	created = models.DateTimeField(auto_now_add=True)
+	owner = models.ForeignKey('Kpi', related_name='limits')
+	lower_limit = models.FloatField(default=0.0, blank=False)
+	upper_limit = models.FloatField(default=0.0, blank=False)	
+
+	def __str__(self):
+		return "Lower limit: " + self.lower_limit + " Upper limit: " + self.upper_limit
+
+	class Meta:
+		ordering = ('created',)

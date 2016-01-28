@@ -6,8 +6,12 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
 from .mixins import JSONResponseMixin
-from api.models import Organization, Team
-from api.serializers import UserSerializer, OrganizationSerializer, TeamSerializer
+from api.models import Organization, Team, Kpi, KpiValue, KpiLimit
+from api.serializers import (
+	UserSerializer, OrganizationSerializer, 
+	TeamSerializer, KpiSerializer, KpiValueSerializer,
+	KpiLimitSerializer,
+)
 
 @api_view(('GET',))
 def api_root(request, format=None):
@@ -15,6 +19,7 @@ def api_root(request, format=None):
         'users': reverse('user-list', request=request, format=format),
         'organizations': reverse('organization-list', request=request, format=format),
         'teams': reverse('teams-list', request=request, format=format),
+		'kpis': reverse('kpi-list', request=request, format=format),
     })
 
 class PingView(APIView):
@@ -31,13 +36,15 @@ class UserList(generics.ListAPIView):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 
+
 class UserDetail(generics.RetrieveAPIView):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 
+
 class OrganizationList(generics.ListCreateAPIView):
 	queryset = Organization.objects.all()
-	serializer_class = OrganizationSerializer	
+	serializer_class = OrganizationSerializer
 
 	def perform_create(self, serializer):
 		serializer.save(owner=self.request.user)	
@@ -46,10 +53,42 @@ class OrganizationDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Organization.objects.all()
 	serializer_class = OrganizationSerializer
 
+
 class TeamList(generics.ListCreateAPIView):
 	queryset = Team.objects.all()
 	serializer_class = TeamSerializer
 
+
 class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Team.objects.all()
-	serializer_class = TeamSerializer	
+	serializer_class = TeamSerializer
+
+
+class KpiList(generics.ListCreateAPIView):
+	queryset = Kpi.objects.all()
+	serializer_class = KpiSerializer
+
+
+class KpiDetail(generics.RetrieveUpdateDestroyAPIView):
+	queryset = Kpi.objects.all()
+	serializer_class = KpiSerializer
+
+
+class KpiValueList(generics.ListCreateAPIView):
+	queryset = KpiValue.objects.all()
+	serializer_class = KpiValueSerializer
+
+
+class KpiValueDetail(generics.RetrieveUpdateDestroyAPIView):
+	queryset = KpiValue.objects.all()
+	serializer_class = KpiValueSerializer
+
+
+class KpiLimitList(generics.ListCreateAPIView):
+	queryset = KpiLimit.objects.all()
+	serializer_class = KpiLimitSerializer
+
+
+class KpiLimitDetail(generics.RetrieveUpdateDestroyAPIView):
+	queryset = KpiLimit.objects.all()
+	serializer_class = KpiLimitSerializer
