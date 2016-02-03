@@ -11,17 +11,6 @@ class UserSerializer(serializers.ModelSerializer):
 		fields = ('id', 'username', 'organizations')
 
 
-class OrganizationSerializer(serializers.ModelSerializer):	
-	#need to be initialized in order to be listed in the metaclass fields	
-	owner = serializers.ReadOnlyField(source='owner.username')
-	teams = serializers.PrimaryKeyRelatedField(many=True, queryset=Team.objects.all())
-	
-
-	class Meta:
-		model = Organization
-		fields = ('id', 'name', 'owner', 'teams')
-
-
 class KpiValueSerializer(serializers.ModelSerializer):
 	#need to be initialized in order to be listed in the metaclass fields	
 	owner = serializers.PrimaryKeyRelatedField(queryset=Kpi.objects.all())
@@ -58,3 +47,13 @@ class TeamSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Team
 		fields = ('id', 'name', 'kpis', 'owner')
+
+class OrganizationSerializer(serializers.ModelSerializer):	
+	#need to be initialized in order to be listed in the metaclass fields	
+	owner = serializers.ReadOnlyField(source='owner.username')
+	teams = TeamSerializer(many=True, read_only=True)
+	#teams = serializers.PrimaryKeyRelatedField(many=True, queryset=Team.objects.all())
+
+	class Meta:
+		model = Organization
+		fields = ('id', 'name', 'owner', 'teams')

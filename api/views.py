@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import generics
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from rest_framework import permissions
 
 from .mixins import JSONResponseMixin
 from api.models import Organization, Team, Kpi, KpiValue, KpiLimit
@@ -18,8 +20,7 @@ def api_root(request, format=None):
     return Response({
         'users': reverse('user-list', request=request, format=format),
         'organizations': reverse('organization-list', request=request, format=format),
-        'teams': reverse('teams-list', request=request, format=format),
-		'kpis': reverse('kpi-list', request=request, format=format),
+		'teams': reverse('team-list', request=request, format=format),
     })
 
 class PingView(APIView):
@@ -32,47 +33,33 @@ class PingView(APIView):
 
 		return JSONResponseMixin(data)
 
-class UserList(generics.ListAPIView):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 
-
-class UserDetail(generics.RetrieveAPIView):
-	queryset = User.objects.all()
-	serializer_class = UserSerializer
-
-
-class OrganizationList(generics.ListCreateAPIView):
+class OrganizationViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = Organization.objects.all()
 	serializer_class = OrganizationSerializer
+	permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 	def perform_create(self, serializer):
-		serializer.save(owner=self.request.user)	
+		serializer.save(owner=self.request.user)		
 
-class OrganizationDetail(generics.RetrieveUpdateDestroyAPIView):
-	queryset = Organization.objects.all()
-	serializer_class = OrganizationSerializer
-
-
-class TeamList(generics.ListCreateAPIView):
+class TeamViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = Team.objects.all()
 	serializer_class = TeamSerializer
+	permission_classes = (permissions.IsAuthenticatedOrReadOnly,)	
 
 
-class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
-	queryset = Team.objects.all()
-	serializer_class = TeamSerializer
-
+#TODO: The views below could be transformed into viewsets later
 
 class KpiList(generics.ListCreateAPIView):
 	queryset = Kpi.objects.all()
 	serializer_class = KpiSerializer
 
-
 class KpiDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Kpi.objects.all()
 	serializer_class = KpiSerializer
-
 
 class KpiValueList(generics.ListCreateAPIView):
 	queryset = KpiValue.objects.all()
