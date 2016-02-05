@@ -8,11 +8,10 @@ from rest_framework.reverse import reverse
 from rest_framework import permissions
 
 from .mixins import JSONResponseMixin
-from api.models import Organization, Team, Kpi, KpiValue, KpiLimit
+from api.models import Organization, Team, Kpi, KpiValue
 from api.serializers import (
 	UserSerializer, OrganizationSerializer, 
 	TeamSerializer, KpiSerializer, KpiValueSerializer,
-	KpiLimitSerializer,
 )
 
 @api_view(('GET',))
@@ -37,7 +36,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 
-class OrganizationViewSet(viewsets.ReadOnlyModelViewSet):
+class OrganizationViewSet(viewsets.ModelViewSet):
 	queryset = Organization.objects.all()
 	serializer_class = OrganizationSerializer
 	permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -45,7 +44,7 @@ class OrganizationViewSet(viewsets.ReadOnlyModelViewSet):
 	def perform_create(self, serializer):
 		serializer.save(owner=self.request.user)		
 
-class TeamViewSet(viewsets.ReadOnlyModelViewSet):
+class TeamViewSet(viewsets.ModelViewSet):
 	queryset = Team.objects.all()
 	serializer_class = TeamSerializer
 	permission_classes = (permissions.IsAuthenticatedOrReadOnly,)	
@@ -65,17 +64,6 @@ class KpiValueList(generics.ListCreateAPIView):
 	queryset = KpiValue.objects.all()
 	serializer_class = KpiValueSerializer
 
-
 class KpiValueDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = KpiValue.objects.all()
 	serializer_class = KpiValueSerializer
-
-
-class KpiLimitList(generics.ListCreateAPIView):
-	queryset = KpiLimit.objects.all()
-	serializer_class = KpiLimitSerializer
-
-
-class KpiLimitDetail(generics.RetrieveUpdateDestroyAPIView):
-	queryset = KpiLimit.objects.all()
-	serializer_class = KpiLimitSerializer

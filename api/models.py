@@ -28,6 +28,10 @@ class Kpi(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	owner = models.ForeignKey('Team', related_name='kpis')
 	name = models.CharField(max_length=20, blank=False)
+	lower_limit = models.FloatField(default=0.0, blank=False)
+	upper_limit = models.FloatField(default=0.0, blank=False)
+	better_when = models.CharField(max_length=5, blank=False, default='upper')
+
 
 	def __str__(self):
 		return '%d: %s' % (self.id, self.name)
@@ -41,21 +45,26 @@ class KpiValue(models.Model):
 	owner = models.ForeignKey('Kpi', related_name='values')
 	value = models.FloatField(default=0.0, blank=False)
 
+	@property
+	def status(self):
+		result = 'yellow'
+
+		if self.owner.better_when.lower() == 'upper':
+			if self.value > self.owner.upper_limit:
+				result = 'green'
+			elif self.value < self.owner.lower_limit:
+				result = 'red'
+
+		if self.owner.better_when.lower() == 'lower':
+			if self.value < self.owner.lower_limit:
+				result = 'green'
+			elif self.value > self.owner.upper_limit:
+				result = 'red'
+
+		return result	
+
 	def __str__(self):
 		return self.value
-
-	class Meta:
-		ordering = ('created',)
-
-
-class KpiLimit(models.Model):
-	created = models.DateTimeField(auto_now_add=True)
-	owner = models.ForeignKey('Kpi', related_name='limits')
-	lower_limit = models.FloatField(default=0.0, blank=False)
-	upper_limit = models.FloatField(default=0.0, blank=False)	
-
-	def __str__(self):
-		return "Lower limit: " + self.lower_limit + " Upper limit: " + self.upper_limit
 
 	class Meta:
 		ordering = ('created',)
