@@ -1,0 +1,33 @@
+<ion-view view-title="{{ organization.name }}">
+  <ion-content>
+  	<div class="row responsive-md">
+	  	<div ng-repeat="team in organization.teams" class="col">
+	  		<div class="card">
+				<div class="item item-divider">
+					<center>
+						<h1>Time: 
+							<a href="#/app/team/{{team.id}}">{{team.name}}</a>
+						</h1>
+					</center>
+				</div>   		
+	  			<div class="item item-text-wrap">
+					<div ng-repeat="kpi in team.kpis" class="quadrant">
+			        	<div class="analysis-block-sm {{kpi.values[0].status}}" id="kpi-{{kpi.id}}">
+			        		<div class="stat-title">
+			        			{{kpi.name}}
+			        		</div>
+			        		<div class="stat-value stat-value-sm" id="count-errors">
+			        			{{kpi.values[0].value}}
+			        		</div>
+			        		<!-- <div class="stat-limits">
+			        			<p>Limite inferior: {{kpi.limits[0].lower_limit}}</p>
+			        			<p>Limite superior: {{kpi.limits[0].upper_limit}}</p>
+			        		</div> -->
+			        	</div>
+			        </div>
+	  			</div>
+	  		</div>
+	  	</div>    
+	</div>
+  </ion-content>
+</ion-view>

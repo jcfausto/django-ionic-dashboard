@@ -1,0 +1,131 @@
+a {
+	text-decoration: none;
+}
+
+.quadrant {
+    width: 50%;
+    /* height: 50%; */
+    /* border: 1px solid black; */
+    /* margin: 0px -1px; */
+    float: left;
+}
+
+.analysis-block-sm, .analysis-block-md, .analysis-block-md-tall, .analysis-block-lg, .date-range {
+  background-color: #FFFFFF;
+  padding: 5px;
+  margin: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #DDD;
+  border-bottom: 2px solid #BBB;
+  -webkit-border-top-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  text-align: center;
+  width: initial;
+}
+
+.analysis-block-sm {
+  height: 225px;
+  padding: 0px;
+}
+
+.analysis-block-md {
+  height: 390px;
+  padding: 0px;  
+}
+
+.analysis-block-lg {
+  height: 440px;
+  padding: 0px;
+}
+
+/*
+.stat-title {
+  background-color: #fff;
+  color: black;
+  font-size: 14pt;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-style: solid;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;  
+  border-bottom-width: 1px;
+  border-color: #DDD;
+}
+
+.stat-subtitle {
+  color: $medium;
+  font-size: 16pt;
+  text-align: center;
+}
+
+.stat-value {
+  color:  $medium-light;
+  text-align: center;
+  font-size: 50pt;
+}
+*/
+
+.stat-title {
+  color: $medium-light;
+  font-size: 11pt;
+  text-align: center;
+  min-height: 2.3em;
+  height: 50%;    
+}
+
+.stat-subtitle {
+  color: $medium;
+  font-size: 16pt;
+  text-align: center;
+}
+
+.stat-value {
+  color:  $medium-light;
+  text-align: center;
+  font-size: 40pt;
+}
+
+.stat-value-lg {
+    /*padding: 15% 0px 0px;*/
+}
+
+.stat-value-sm {
+    /*padding: 25% 0px 0px;*/
+}
+
+
+.stat-limits {
+  color:  $medium-light;
+  font-size: 9pt;
+  text-align: left;
+  margin-top: 60px;  
+}
+
+.stat-unit {
+  color: $medium-light;
+  font-size: 12pt;
+  text-align: center;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.yellow {
+    background-color: yellow;
+}

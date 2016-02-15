@@ -1,0 +1,19 @@
+<ion-view view-title="Time: {{team.name}}">
+  <ion-content>	
+  	<div>
+		<div ng-repeat="kpi in team.kpis" class="quadrant">
+			<div class="analysis-block-md {{kpi.values[0].status}}" id="kpi-{{kpi.id}}">
+				<div class="stat-title">
+					<h4>{{kpi.name}}</h4>
+				</div>
+				<div class="stat-value stat-value-lg" id="count-errors">
+					{{kpi.values[0].value}}
+				</div>
+				<!-- <div class="stat-limits">
+					<p>Limite inferior: {{kpi.limits[0].lower_limit}}</p>
+					<p>Limite superior: {{kpi.limits[0].upper_limit}}</p>
+				</div> -->
+		    </div>
+		</div>
+  </ion-content>
+</ion-view>

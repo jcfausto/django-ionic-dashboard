@@ -1,0 +1,9 @@
+<ion-view view-title="Escolha a área">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="organization in organizations" href="#/app/organization/{{organization.id}}">
+        {{organization.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
