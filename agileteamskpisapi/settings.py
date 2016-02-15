@@ -139,19 +139,13 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = '/var/tmp/dashboard/collected_static' # staticfiles
 STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
 
-STATICFILES_FINDERS = (
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-)
-
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'static'),
 #     #os.path.join(BASE_DIR, '../dashboard/static'),
 # )
 
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, "dashboard", "static"),) # In Django 1.9 it looks like I don't need to explicitly list subapps static media
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "dashboard", "static"),
-) # no global static media , just the per-app
+STATICFILES_DIRS = () # no global static media , just the per-app
 
 # allowing all hosts to perform queries
 CORS_ORIGIN_ALLOW_ALL = True
