@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cors',
     'corsheaders',
     'api',
+    'dashboard',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -81,15 +82,10 @@ WSGI_APPLICATION = 'agileteamskpisapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'drfagilekpis',
-        'USER': 'kpisadmin',
-        'PASSWORD': 'ritvik@123',
-        'HOST': '127.0.0.1',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'devdb',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -147,6 +143,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
 #     os.path.join(BASE_DIR, 'static'),
 #     #os.path.join(BASE_DIR, '../dashboard/static'),
 # )
+
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, "dashboard", "static"),) # In Django 1.9 it looks like I don't need to explicitly list subapps static media
 STATICFILES_DIRS = () # no global static media , just the per-app
 
