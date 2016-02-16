@@ -14,7 +14,7 @@ angular.module('starter.services', [])
 
   return {
     getOrganizations: function() {
-      return $http.get(api_endpoint+'/organizations').then(function(data){
+      return $http.get(api_endpoint+'/organizations/').then(function(data){
           console.log(data.data);
           response = data.data;
           return response;
