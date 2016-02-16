@@ -57,3 +57,9 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Static assets
+collected_static/
+devdb
+.idea/
+*.pyc
