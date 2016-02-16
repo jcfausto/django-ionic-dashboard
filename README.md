@@ -1,7 +1,8 @@
-# agile-teams-kpis-api
-A Django Rest Framework API for the Android Agile Teams Dashboard app.
+# Django Ionic Dashboard
 
-# API on Heroku
+This is a django rest framework api and an IONIC app able to run on heroku or dokku.
 
-https://thawing-thicket-85466.herokuapp.com
+# Live demo here:
+
+https://didashboard.herokuapp.com
 
