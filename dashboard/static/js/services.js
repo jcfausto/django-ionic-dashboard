@@ -22,7 +22,7 @@ angular.module('starter.services', [])
     },
 
     getOrganization: function(organizationId) {
-      return $http.get(api_endpoint+'/organizations/'+organizationId).then(function(data){
+      return $http.get(api_endpoint+'/organizations/'+organizationId+'/').then(function(data){
           console.log(data.data);
           response = data.data;
           return response;
@@ -30,7 +30,7 @@ angular.module('starter.services', [])
     },
 
     getTeam: function(teamId) {
-      return $http.get(api_endpoint+'/teams/'+teamId).then(function(data){
+      return $http.get(api_endpoint+'/teams/'+teamId+'/').then(function(data){
           console.log(data.data);
           response = data.data;
           return response;
