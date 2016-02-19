@@ -1,22 +1,22 @@
 <ion-view view-title="{{ organization.name }}">
   <ion-content>
-  	<div class="row responsive-md">
-	  	<div ng-repeat="team in organization.teams" class="col">
-	  		<div class="card">
+  	<div class="row responsive-lg" ng-repeat="team in organization.teams" ng-if="$index % 4 === 0">
+  	    <div class="col col-20" ng-if="$index < organization.teams.length">
+			<div class="card">
 				<div class="item item-divider">
 					<center>
-						<h1>Time: 
-							<a href="#/app/team/{{team.id}}">{{team.name}}</a>
+						<h1> 
+							<a href="#/app/team/{{organization.teams[$index].id}}">{{organization.teams[$index].name}}</a>
 						</h1>
 					</center>
 				</div>   		
-	  			<div class="item item-text-wrap">
-					<div ng-repeat="kpi in team.kpis" class="quadrant">
+	  			<div class="item item-body item-text-wrap">
+					<div ng-repeat="kpi in organization.teams[$index].kpis" class="quadrant">
 			        	<div class="analysis-block-sm {{kpi.values[0].status}}" id="kpi-{{kpi.id}}">
 			        		<div class="stat-title">
 			        			{{kpi.name}}
 			        		</div>
-			        		<div class="stat-value stat-value-sm" id="count-errors">
+			        		<div class="stat-value stat-value-lg" id="count-errors">
 			        			{{kpi.values[0].value}}
 			        		</div>
 			        		<!-- <div class="stat-limits">
@@ -26,8 +26,116 @@
 			        	</div>
 			        </div>
 	  			</div>
-	  		</div>
-	  	</div>    
+	  		</div>            
+        </div>
+        <div class="col col-20" ng-if="$index + 1 < organization.teams.length">
+			<div class="card">
+				<div class="item item-divider">
+					<center>
+						<h1> 
+							<a href="#/app/team/{{organization.teams[$index + 1].id}}">{{organization.teams[$index + 1].name}}</a>
+						</h1>
+					</center>
+				</div>   		
+	  			<div class="item item-body item-text-wrap">
+					<div ng-repeat="kpi in organization.teams[$index + 1].kpis" class="quadrant">
+			        	<div class="analysis-block-sm {{kpi.values[0].status}}" id="kpi-{{kpi.id}}">
+			        		<div class="stat-title">
+			        			{{kpi.name}}
+			        		</div>
+			        		<div class="stat-value stat-value-lg" id="count-errors">
+			        			{{kpi.values[0].value}}
+			        		</div>
+			        		<!-- <div class="stat-limits">
+			        			<p>Limite inferior: {{kpi.limits[0].lower_limit}}</p>
+			        			<p>Limite superior: {{kpi.limits[0].upper_limit}}</p>
+			        		</div> -->
+			        	</div>
+			        </div>
+	  			</div>
+	  		</div> 
+        </div>
+        <div class="col col-20" ng-if="$index + 2 < organization.teams.length">
+			<div class="card">
+				<div class="item item-divider">
+					<center>
+						<h1> 
+							<a href="#/app/team/{{organization.teams[$index + 2].id}}">{{organization.teams[$index + 2].name}}</a>
+						</h1>
+					</center>
+				</div>   		
+	  			<div class="item item-body item-text-wrap">
+					<div ng-repeat="kpi in organization.teams[$index + 2].kpis" class="quadrant">
+			        	<div class="analysis-block-sm {{kpi.values[0].status}}" id="kpi-{{kpi.id}}">
+			        		<div class="stat-title">
+			        			{{kpi.name}}
+			        		</div>
+			        		<div class="stat-value stat-value-lg" id="count-errors">
+			        			{{kpi.values[0].value}}
+			        		</div>
+			        		<!-- <div class="stat-limits">
+			        			<p>Limite inferior: {{kpi.limits[0].lower_limit}}</p>
+			        			<p>Limite superior: {{kpi.limits[0].upper_limit}}</p>
+			        		</div> -->
+			        	</div>
+			        </div>
+	  			</div>
+	  		</div> 
+        </div>
+        <div class="col col-20" ng-if="$index + 3 < organization.teams.length">
+			<div class="card">
+				<div class="item item-divider">
+					<center>
+						<h1> 
+							<a href="#/app/team/{{organization.teams[$index + 3].id}}">{{organization.teams[$index + 3].name}}</a>
+						</h1>
+					</center>
+				</div>   		
+	  			<div class="item item-body item-text-wrap">
+					<div ng-repeat="kpi in organization.teams[$index + 3].kpis" class="quadrant">
+			        	<div class="analysis-block-sm {{kpi.values[0].status}}" id="kpi-{{kpi.id}}">
+			        		<div class="stat-title">
+			        			{{kpi.name}}
+			        		</div>
+			        		<div class="stat-value stat-value-lg" id="count-errors">
+			        			{{kpi.values[0].value}}
+			        		</div>
+			        		<!-- <div class="stat-limits">
+			        			<p>Limite inferior: {{kpi.limits[0].lower_limit}}</p>
+			        			<p>Limite superior: {{kpi.limits[0].upper_limit}}</p>
+			        		</div> -->
+			        	</div>
+			        </div>
+	  			</div>
+	  		</div> 
+        </div>
+        <div class="col col-20" ng-if="$index + 4 < organization.teams.length">
+			<div class="card">
+				<div class="item item-divider">
+					<center>
+						<h1> 
+							<a href="#/app/team/{{organization.teams[$index + 4].id}}">{{organization.teams[$index + 4].name}}</a>
+						</h1>
+					</center>
+				</div>   		
+	  			<div class="item item-body item-text-wrap">
+					<div ng-repeat="kpi in organization.teams[$index + 4].kpis" class="quadrant">
+			        	<div class="analysis-block-sm {{kpi.values[0].status}}" id="kpi-{{kpi.id}}">
+			        		<div class="stat-title">
+			        			{{kpi.name}}
+			        		</div>
+			        		<div class="stat-value stat-value-lg" id="count-errors">
+			        			{{kpi.values[0].value}}
+			        		</div>
+			        		<!-- <div class="stat-limits">
+			        			<p>Limite inferior: {{kpi.limits[0].lower_limit}}</p>
+			        			<p>Limite superior: {{kpi.limits[0].upper_limit}}</p>
+			        		</div> -->
+			        	</div>
+			        </div>
+	  			</div>
+	  		</div> 
+        </div>        
 	</div>
   </ion-content>
 </ion-view>

@@ -122,7 +122,8 @@ USE_TZ = True
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-# comment the next line to use sqlite
+# Use this database url for local development with sqlite
+# sqlite:////full/path/to/your/database/devdb.sqlite3
 DATABASES['default'] = dj_database_url.config()
 
 # Enable Persistent Connections

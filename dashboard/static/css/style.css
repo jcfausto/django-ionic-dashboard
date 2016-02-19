@@ -4,9 +4,12 @@ a {
 
 .quadrant {
     width: 50%;
-    /* height: 50%; */
-    /* border: 1px solid black; */
-    /* margin: 0px -1px; */
+    float: left;
+    height: 100px;
+}
+
+.quadrant-lg {
+    width: 50%;
     float: left;
 }
 
@@ -28,10 +31,11 @@ a {
   border-bottom-left-radius: 3px;
   text-align: center;
   width: initial;
+  height: 100%;
 }
 
 .analysis-block-sm {
-  height: 225px;
+  /*height: 225px;*/
   padding: 0px;
 }
 
@@ -95,11 +99,15 @@ a {
 }
 
 .stat-value-lg {
-    /*padding: 15% 0px 0px;*/
+  color:  $medium-light;
+  text-align: center;
+  font-size: large;
 }
 
 .stat-value-sm {
-    /*padding: 25% 0px 0px;*/
+  color:  $medium-light;
+  text-align: center;
+  font-size: small;
 }
 
 
